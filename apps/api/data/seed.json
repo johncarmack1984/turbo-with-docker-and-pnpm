@@ -1,0 +1,87 @@
+{
+  "store": {
+    "name": "Ring My Belle",
+    "default_currency_code": "usd",
+    "currencies": ["usd"],
+    "countries": ["us"]
+  },
+  "users": [
+    {
+      "first_name": "John",
+      "last_name": "Carmack",
+      "email": "j.carmack@ringmybelle.com",
+      "password": "supersecret",
+      "role": "admin"
+    }
+  ],
+  "regions": [
+    {
+      "id": "charleston-sc",
+      "name": "Charleston, SC",
+      "currency_code": "usd",
+      "tax_rate": 0,
+      "payment_providers": ["manual"],
+      "fulfillment_providers": ["manual"]
+    },
+    {
+      "id": "connecticut",
+      "name": "Connecticut",
+      "currency_code": "usd",
+      "tax_rate": 0,
+      "payment_providers": ["manual"],
+      "fulfillment_providers": ["manual"]
+    },
+    {
+      "id": "las-vegas",
+      "name": "Las Vegas",
+      "currency_code": "usd",
+      "tax_rate": 0,
+      "payment_providers": ["manual"],
+      "fulfillment_providers": ["manual"]
+    },
+    {
+      "id": "los-angeles",
+      "name": "Los Angeles",
+      "currency_code": "usd",
+      "tax_rate": 0,
+      "payment_providers": ["manual"],
+      "fulfillment_providers": ["manual"]
+    }
+  ],
+  "shipping_options": [
+    {
+      "name": "Merchant Fulfillment",
+      "region_id": "los-angeles",
+      "provider_id": "manual",
+      "data": { "id": "manual-fulfillment" },
+      "price_type": "flat_rate",
+      "amount": 0
+    },
+    {
+      "name": "Merchant Fulfillment",
+      "region_id": "charleston-sc",
+      "provider_id": "manual",
+      "data": { "id": "manual-fulfillment" },
+      "price_type": "flat_rate",
+      "amount": 0
+    },
+    {
+      "name": "Merchant Fulfillment",
+      "region_id": "connecticut",
+      "provider_id": "manual",
+      "data": { "id": "manual-fulfillment" },
+      "price_type": "flat_rate",
+      "amount": 0
+    },
+    {
+      "name": "Merchant Fulfillment",
+      "region_id": "las-vegas",
+      "provider_id": "manual",
+      "data": { "id": "manual-fulfillment" },
+      "price_type": "flat_rate",
+      "amount": 0
+    }
+  ],
+  "products": [],
+  "categories": []
+}

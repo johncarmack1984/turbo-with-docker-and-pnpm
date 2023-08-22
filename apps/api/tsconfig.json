@@ -1,11 +1,25 @@
 {
   "compilerOptions": {
-    "lib": ["ES2015"],
+    "target": "es2019",
     "module": "CommonJS",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipDefaultLibCheck": true,
+    "sourceMap": false,
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "checkJs": false,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./src"
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "**/__tests__",
+    "**/__fixtures__",
+    "node_modules",
+    "build",
+    ".cache"
+  ],
   "extends": "tsconfig/base.json",
   "include": ["src"]
 }
