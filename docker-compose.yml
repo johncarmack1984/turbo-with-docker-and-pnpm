@@ -1,16 +1,16 @@
 version: "3"
 
 services:
-  web:
-    container_name: web
-    build:
-      context: .
-      dockerfile: ./apps/web/Dockerfile
-    restart: always
-    ports:
-      - 3000:3000
-    networks:
-      - app_network
+  # web:
+  #   container_name: web
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/web/Dockerfile
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - app_network
   api:
     container_name: api
     build:
@@ -18,9 +18,19 @@ services:
       dockerfile: ./apps/api/Dockerfile
     restart: always
     ports:
-      - 3001:3001
+      - 9000:9000
     networks:
       - app_network
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/medusa-store
+      REDIS_URL: redis://cache
+      NODE_ENV: development
+      JWT_SECRET: some_jwt_secret
+      COOKIE_SECRET: some_cookie_secret
+      PORT: 9000
   db:
     container_name: db
     image: postgres:15.4-alpine
@@ -28,9 +38,17 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_DB: medusa-store
     ports:
       - 5432:5432
+    networks:
+      - app_network
+  redis:
+    container_name: cache
+    image: redis:6.2-alpine
+    restart: always
+    expose:
+      - 6379
     networks:
       - app_network
 

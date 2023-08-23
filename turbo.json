@@ -21,6 +21,10 @@
     },
     "clean": {
       "cache": false
+    },
+    "start:api:prod": {
+      "outputs": ["dist/**"],
+      "persistent": true
     }
   }
 }

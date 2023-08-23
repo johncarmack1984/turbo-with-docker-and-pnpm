@@ -11,7 +11,8 @@
     "resolveJsonModule": true,
     "checkJs": false,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "isolatedModules": false
   },
   "exclude": [
     "**/__tests__",

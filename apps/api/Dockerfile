@@ -14,11 +14,8 @@ RUN apk update
 WORKDIR /app
 RUN npm i -g npm@latest
 RUN pnpm i -g turbo
-COPY . .
+ADD . ./
 RUN turbo prune --scope=api --docker
-
-# remove all empty node_modules folder structure
-RUN rm -rf /app/out/full/*/*/node_modules
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
@@ -30,7 +27,7 @@ WORKDIR /app
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-RUN pnpm install
+RUN pnpm install -r
 
 # Build the project and its dependencies
 COPY --from=builder /app/out/full/ .
@@ -43,6 +40,13 @@ COPY turbo.json turbo.json
 # ARG TURBO_TOKEN
 # ENV TURBO_TOKEN=$TURBO_TOKEN
 
+RUN pnpm fetch
+
+ADD . ./
+RUN npm i -g npm@latest
+RUN pnpm i -g turbo
+RUN pnpm install -r
+
 RUN pnpm turbo run build --filter=api...
 
 FROM base AS runner
@@ -54,4 +58,4 @@ RUN adduser --system --uid 1001 expressjs
 USER expressjs
 COPY --from=installer /app .
 
-CMD node apps/api/dist/index.js
+CMD ["pnpm", "--filter", "api", "start:api:prod"]
