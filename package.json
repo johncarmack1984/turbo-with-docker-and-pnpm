@@ -8,6 +8,7 @@
     "dev": "turbo run dev",
     "docker:network": "docker network create app_network || true",
     "docker:build:prod": "COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose -f docker-compose.yml build",
+    "docker:build:ci": "pnpm docker:network && pnpm docker:build:prod",
     "docker:start:prod": "docker-compose -f docker-compose.yml up -d --build",
     "docker:stop": "docker kill $(docker ps -q) && docker rm $(docker ps -a -q)",
     "docker:run:prod": "pnpm docker:network && pnpm docker:build:prod && pnpm docker:start:prod",
