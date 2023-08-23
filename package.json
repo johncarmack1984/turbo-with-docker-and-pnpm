@@ -14,6 +14,7 @@
     "docker:run:prod": "pnpm docker:network && pnpm docker:build:prod && pnpm docker:start:prod",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
+    "stop": "turbo run stop && pnpm docker:stop",
     "test": "turbo run test"
   },
   "dependencies": {},
