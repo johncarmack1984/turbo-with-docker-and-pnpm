@@ -60,7 +60,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "jest": "^27.3.1",
-    "mongoose": "^5.13.14",
+    "mongoose": "^5.13.20",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.6",
